@@ -63,27 +63,31 @@ static const double accel_speed = 0.5;
 	{ MODKEY|WLR_MODIFIER_SHIFT, KEY,            tag,             {.ui = 1 << TAG} }, \
 	{ MODKEY|WLR_MODIFIER_CTRL|WLR_MODIFIER_SHIFT,KEY,toggletag,  {.ui = 1 << TAG} }
 
+#define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
+
 static const char *termcmd[] = { "foot", "-f", "monospace:size=10", NULL };
 static const char *menucmd[] = { "wmenu-run", NULL };
 
 static const Key keys[] = {
-	{ MODKEY,                    XKB_KEY_p,           spawn,            {.v = menucmd} },
-	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_Return,      spawn,            {.v = termcmd} },
+	{ MODKEY,                    XKB_KEY_d,           spawn,            {.v = menucmd} },
+	{ MODKEY,                    XKB_KEY_Return,      spawn,            {.v = termcmd} },
 	{ MODKEY,                    XKB_KEY_j,           focusstack,       {.i = +1} },
 	{ MODKEY,                    XKB_KEY_k,           focusstack,       {.i = -1} },
-	{ MODKEY,                    XKB_KEY_i,           incnmaster,       {.i = +1} },
-	{ MODKEY,                    XKB_KEY_d,           incnmaster,       {.i = -1} },
-	{ MODKEY,                    XKB_KEY_h,           setmfact,         {.f = -0.05f} },
-	{ MODKEY,                    XKB_KEY_l,           setmfact,         {.f = +0.05f} },
-	{ MODKEY,                    XKB_KEY_Return,      zoom,             {0} },
+	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_i,           incnmaster,       {.i = +1} },
+	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_d,           incnmaster,       {.i = -1} },
+	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_h,           setmfact,         {.f = -0.05f} },
+	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_l,           setmfact,         {.f = +0.05f} },
+	{ MODKEY,                    XKB_KEY_equal,       spawn,            SHCMD("wpctl set-volume @DEFAULT_SINK@ 5%+ -l 1.0") },
+	{ MODKEY,                    XKB_KEY_minus,       spawn,            SHCMD("wpctl set-volume @DEFAULT_SINK@ 5%-") },
+	{ 0,                         XKB_KEY_Print,       spawn,            SHCMD("grim -g \"$(slurp)\"") },
+	{ MODKEY,                    XKB_KEY_z,           zoom,             {0} },
 	{ MODKEY,                    XKB_KEY_Tab,         view,             {0} },
-	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_c,           killclient,       {0} },
+	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_q,           killclient,       {0} },
 	{ MODKEY,                    XKB_KEY_t,           setlayout,        {.v = &layouts[0]} },
 	{ MODKEY,                    XKB_KEY_f,           setlayout,        {.v = &layouts[1]} },
 	{ MODKEY,                    XKB_KEY_m,           setlayout,        {.v = &layouts[2]} },
-	{ MODKEY,                    XKB_KEY_space,       setlayout,        {0} },
 	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_space,       togglefloating,   {0} },
-	{ MODKEY,                    XKB_KEY_e,           togglefullscreen, {0} },
+	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_f,           togglefullscreen, {0} },
 	{ MODKEY,                    XKB_KEY_0,           view,             {.ui = ~0} },
 	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_0,           tag,              {.ui = ~0} },
 	{ MODKEY,                    XKB_KEY_comma,       focusmon,         {.i = WLR_DIRECTION_LEFT} },
@@ -99,7 +103,6 @@ static const Key keys[] = {
 	TAGKEYS(                     XKB_KEY_7,           6),
 	TAGKEYS(                     XKB_KEY_8,           7),
 	TAGKEYS(                     XKB_KEY_9,           8),
-	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_q,           quit,             {0} },
 	{ WLR_MODIFIER_CTRL|WLR_MODIFIER_ALT,XKB_KEY_BackSpace, quit, {0} },
 
 #define CHVT(n) { WLR_MODIFIER_CTRL|WLR_MODIFIER_ALT,XKB_KEY_F##n, chvt, {.ui = (n)} }
@@ -113,9 +116,6 @@ static const Button buttons[] = {
 	{ MODKEY, BTN_RIGHT,  moveresize,     {.ui = CurResize} },
 };
 
-#define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
-
 static const Axis axes[] = {
-	{ MODKEY, AxisUp,   spawn, SHCMD("wpctl set-volume @DEFAULT_SINK@ 1%+ -l 1.0") },
-	{ MODKEY, AxisDown, spawn, SHCMD("wpctl set-volume @DEFAULT_SINK@ 1%-") },
+	{ 0, 0, NULL, {0} },
 };
