@@ -32,6 +32,7 @@ Build and install with `doas make clean install`.
 ## Patches
 
 - [bar](https://codeberg.org/dwl/dwl-patches/src/branch/main/patches/bar)
+- [alwayscenter](https://codeberg.org/dwl/dwl-patches/src/branch/main/patches/alwayscenter)
 
 ## Acknowledgements
 
