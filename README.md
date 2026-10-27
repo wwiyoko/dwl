@@ -20,7 +20,18 @@ Additional dependencies for XWayland support:
 - `xcb-util-wm-devel`
 - `xorg-server-xwayland`
 
+Additional dependencies for patches:
+
+- `tllist`
+- `fcft`
+- `fcft-devel`
+- `pixman`
+
 Build and install with `doas make clean install`.
+
+## Patches
+
+- [bar](https://codeberg.org/dwl/dwl-patches/src/branch/main/patches/bar)
 
 ## Acknowledgements
 

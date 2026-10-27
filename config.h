@@ -7,13 +7,18 @@ static const int sloppyfocus               = 0;
 static const int bypass_surface_visibility = 0;
 static const unsigned int borderpx         = 1;
 static const unsigned int snap             = 0;
-static const float rootcolor[]             = COLOR(0x222222ff);
-static const float bordercolor[]           = COLOR(0x444444ff);
-static const float focuscolor[]            = COLOR(0x005577ff);
-static const float urgentcolor[]           = COLOR(0xff0000ff);
+static const int showbar                   = 1;
+static const int topbar                    = 1;
+static const char *fonts[]                 = {"monospace:size=10"};
+static const float rootcolor[]             = COLOR(0x000000ff);
 static const float fullscreen_bg[]         = {0.0f, 0.0f, 0.0f, 1.0f};
+static uint32_t colors[][3]                = {
+	[SchemeNorm] = { 0xbbbbbbff, 0x222222ff, 0x444444ff },
+	[SchemeSel]  = { 0xeeeeeeff, 0x005577ff, 0x005577ff },
+	[SchemeUrg]  = { 0,          0,          0x770000ff },
+};
 
-#define TAGCOUNT (9)
+static char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
 
 static int log_level = WLR_ERROR;
 
@@ -71,6 +76,7 @@ static const char *menucmd[] = { "wmenu-run", NULL };
 static const Key keys[] = {
 	{ MODKEY,                    XKB_KEY_d,           spawn,            {.v = menucmd} },
 	{ MODKEY,                    XKB_KEY_Return,      spawn,            {.v = termcmd} },
+	{ MODKEY,                    XKB_KEY_b,           togglebar,        {0} },
 	{ MODKEY,                    XKB_KEY_j,           focusstack,       {.i = +1} },
 	{ MODKEY,                    XKB_KEY_k,           focusstack,       {.i = -1} },
 	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_i,           incnmaster,       {.i = +1} },
@@ -111,9 +117,17 @@ static const Key keys[] = {
 };
 
 static const Button buttons[] = {
-	{ MODKEY, BTN_LEFT,   moveresize,     {.ui = CurMove} },
-	{ MODKEY, BTN_MIDDLE, togglefloating, {0} },
-	{ MODKEY, BTN_RIGHT,  moveresize,     {.ui = CurResize} },
+	{ ClkLtSymbol, 0,      BTN_LEFT,   setlayout,      {.v = &layouts[0]} },
+	{ ClkLtSymbol, 0,      BTN_RIGHT,  setlayout,      {.v = &layouts[2]} },
+	{ ClkTitle,    0,      BTN_MIDDLE, zoom,           {0} },
+	{ ClkStatus,   0,      BTN_MIDDLE, spawn,          {.v = termcmd} },
+	{ ClkClient,   MODKEY, BTN_LEFT,   moveresize,     {.ui = CurMove} },
+	{ ClkClient,   MODKEY, BTN_MIDDLE, togglefloating, {0} },
+	{ ClkClient,   MODKEY, BTN_RIGHT,  moveresize,     {.ui = CurResize} },
+	{ ClkTagBar,   0,      BTN_LEFT,   view,           {0} },
+	{ ClkTagBar,   0,      BTN_RIGHT,  toggleview,     {0} },
+	{ ClkTagBar,   MODKEY, BTN_LEFT,   tag,            {0} },
+	{ ClkTagBar,   MODKEY, BTN_RIGHT,  toggletag,      {0} },
 };
 
 static const Axis axes[] = {
