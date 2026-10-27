@@ -1,6 +1,6 @@
 # dwl-build
 
-Customized build of dwl.
+Customized build of dwl with patches.
 
 ## Building dwl
 
@@ -33,6 +33,7 @@ Build and install with `doas make clean install`.
 
 - [bar](https://codeberg.org/dwl/dwl-patches/src/branch/main/patches/bar)
 - [alwayscenter](https://codeberg.org/dwl/dwl-patches/src/branch/main/patches/alwayscenter)
+- [cursortheme](https://codeberg.org/dwl/dwl-patches/src/branch/main/patches/cursortheme)
 
 ## Acknowledgements
 

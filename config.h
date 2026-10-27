@@ -12,6 +12,8 @@ static const int topbar                    = 1;
 static const char *fonts[]                 = {"monospace:size=10"};
 static const float rootcolor[]             = COLOR(0x000000ff);
 static const float fullscreen_bg[]         = {0.0f, 0.0f, 0.0f, 1.0f};
+static const char *cursor_theme            = "Adwaita";
+static const char cursor_size[]            = "24";
 static uint32_t colors[][3]                = {
 	[SchemeNorm] = { 0xbbbbbbff, 0x222222ff, 0x444444ff },
 	[SchemeSel]  = { 0xeeeeeeff, 0x005577ff, 0x005577ff },
