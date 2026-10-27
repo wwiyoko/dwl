@@ -29,12 +29,13 @@ Additional dependencies for patches:
 
 Build and install with `doas make clean install`.
 
-## Patches
+## Applied Patches
 
 - [bar](https://codeberg.org/dwl/dwl-patches/src/branch/main/patches/bar)
 - [alwayscenter](https://codeberg.org/dwl/dwl-patches/src/branch/main/patches/alwayscenter)
 - [cursortheme](https://codeberg.org/dwl/dwl-patches/src/branch/main/patches/cursortheme)
 - [autostart](https://codeberg.org/dwl/dwl-patches/src/branch/main/patches/autostart)
+- [pointer-gestures](https://codeberg.org/dwl/dwl-patches/src/branch/main/patches/pointer-gestures-unstable-v1)
 
 ## Acknowledgements
 
