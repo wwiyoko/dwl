@@ -24,6 +24,12 @@ static char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
 
 static int log_level = WLR_ERROR;
 
+static const char *const autostart[] = {
+        "pipewire", NULL,
+        "brightnessctl", "set", "10%", NULL,
+        NULL
+};
+
 static const Rule rules[] = {
 	{ "swayimg",          NULL,       0,            1,           -1 },
 	{ "mpv",              NULL,       0,            1,           -1 },
