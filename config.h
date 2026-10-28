@@ -94,6 +94,9 @@ static const Key keys[] = {
 	{ MODKEY,                    XKB_KEY_equal,       spawn,            SHCMD("wpctl set-volume @DEFAULT_SINK@ 5%+ -l 1.0") },
 	{ MODKEY,                    XKB_KEY_minus,       spawn,            SHCMD("wpctl set-volume @DEFAULT_SINK@ 5%-") },
 	{ 0,                         XKB_KEY_Print,       spawn,            SHCMD("grim -g \"$(slurp)\"") },
+	{ MODKEY,                    XKB_KEY_bracketright,spawn,            SHCMD("playerctl next") },
+	{ MODKEY,                    XKB_KEY_bracketleft, spawn,            SHCMD("playerctl previous") },
+	{ MODKEY,                    XKB_KEY_p,           spawn,            SHCMD("playerctl play-pause") },
 	{ MODKEY,                    XKB_KEY_z,           zoom,             {0} },
 	{ MODKEY,                    XKB_KEY_Tab,         view,             {0} },
 	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_q,           killclient,       {0} },
@@ -117,7 +120,8 @@ static const Key keys[] = {
 	TAGKEYS(                     XKB_KEY_7,           6),
 	TAGKEYS(                     XKB_KEY_8,           7),
 	TAGKEYS(                     XKB_KEY_9,           8),
-	{ WLR_MODIFIER_CTRL|WLR_MODIFIER_ALT,XKB_KEY_BackSpace, quit, {0} },
+	{ WLR_MODIFIER_CTRL|WLR_MODIFIER_ALT, XKB_KEY_BackSpace, quit, {0} },
+	{ WLR_MODIFIER_CTRL|WLR_MODIFIER_ALT, XKB_KEY_space, spawn, SHCMD("makoctl dismiss") },
 
 #define CHVT(n) { WLR_MODIFIER_CTRL|WLR_MODIFIER_ALT,XKB_KEY_F##n, chvt, {.ui = (n)} }
 	CHVT(1), CHVT(2), CHVT(3), CHVT(4), CHVT(5), CHVT(6),
