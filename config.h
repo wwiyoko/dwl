@@ -27,11 +27,13 @@ static int log_level = WLR_ERROR;
 static const char *const autostart[] = {
         "pipewire", NULL,
         "brightnessctl", "set", "10%", NULL,
+        "mpd", NULL,
+        "mpdris2-rs", NULL,
         NULL
 };
 
 static const Rule rules[] = {
-	{ "swayimg",          NULL,       0,            1,           -1 },
+	{ "imv",              NULL,       0,            1,           -1 },
 	{ "mpv",              NULL,       0,            1,           -1 },
 	{ "firefox",          NULL,       1 << 1,       0,           -1 },
 };
